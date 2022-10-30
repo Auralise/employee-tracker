@@ -1,3 +1,4 @@
+USE employee_db;
 
 INSERT INTO department (name) 
 VALUES  ('Engineering'),
@@ -19,6 +20,7 @@ VALUES  ('Engineering Manager', 150000, 1),
         ('Copywriter', 110000, 4);
 
 /*
+    ROLE IDs for testing
     1 - Engineering Manager
     2 - Software Engineer
     3 - Eng Intern
