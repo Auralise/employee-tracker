@@ -4,6 +4,7 @@ CREATE DATABASE employee_db;
 
 USE employee_db;
 
+-- Add tables/Define Schema
 CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
@@ -35,3 +36,9 @@ CREATE TABLE employee (
     REFERENCES employee(id)
 );
 
+-- Create database user - This will fail the first time the script runs as you can not selectively drop a user if they exist
+DROP USER 'empdb'@'localhost';
+-- Change password to whatever
+CREATE USER 'empdb'@'localhost' IDENTIFIED BY 'password'; 
+GRANT ALTER, INSERT, UPDATE, DELETE, SELECT on employee_db.* TO 'empdb'@'localhost';
+FLUSH PRIVILEGES;
