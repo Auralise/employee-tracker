@@ -16,7 +16,7 @@ const chooseDepartment = async db => {
 
     console.log(''); // add space
 
-    return departments.find(e => e.name = answer.department).id;
+    return departments.find(e => e.department_name === answer.department).id;
 }
 
 const chooseManager = async db => {
@@ -78,9 +78,9 @@ const chooseRole = async db => {
         }
     ];
 
-    const answer = await inquirer.promt(question);
+    const answer = await inquirer.prompt(question);
 
-    return roles.find(e => e.title === answer.role).id;
+    return roles.find(e => e.title === answer.role).role_id;
 }
 
 

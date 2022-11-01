@@ -7,6 +7,15 @@ const updateEmployeeRole = async db => {
     await db.updateEmployeeRole(empID, newRoleID);
 }
 
+const updateEmployeeNullRole = async (db, employee) => {
+    console.log('');
+    console.log(`Updating null role for employee ID:${employee.id} ${employee.first_name} ${employee.last_name}`);
+    console.log('');
+    const newRoleID = await chooseRole(db);
+    console.log('');
+    await db.updateEmployeeRole(employee.id, newRoleID);
+}
+
 const updateEmployeeManager = async db => {
     console.log("Choose which employee to update: ");
     const empID = await chooseEmployee(db);
@@ -25,3 +34,4 @@ const updateEmployeeManager = async db => {
 
 exports.updateEmployeeRole = updateEmployeeRole;
 exports.updateEmployeeManager = updateEmployeeManager;
+exports.updateEmployeeNullRole = updateEmployeeNullRole;

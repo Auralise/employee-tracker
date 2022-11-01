@@ -7,6 +7,7 @@ const {chooseDepartment, chooseManager} = require('./src/select');
 const {addDept, addRole, addEmployee} = require('./src/add');
 const {updateEmployeeRole, updateEmployeeManager} = require('./src/update');
 const {deleteDepartment, deleteRole, deleteEmployee} = require('./src/delete');
+const {checkConsistency} = require('./src/util');
 
 const dbConfig = {
     host: "localhost",
@@ -97,7 +98,7 @@ const run = async db => {
             break;
         case "Add an employee":
             console.log('');
-            await addEmployee;
+            await addEmployee(db);
             console.log('');
             break;
         case "Update an employee's role":
@@ -112,17 +113,17 @@ const run = async db => {
             break;
         case "Delete a department":
             console.log('');
-            await deleteDepartment();
+            await deleteDepartment(db);
             console.log('');
             break;
         case "Delete a role":
             console.log('');
-            await deleteRole();
+            await deleteRole(db);
             console.log('');
             break;
         case "Delete an employee":
             console.log('');
-            await deleteEmployee();
+            await deleteEmployee(db);
             console.log('');
             break;
         case "Quit":
@@ -132,8 +133,12 @@ const run = async db => {
     run(db);
 }
 
-const init = () => {
+
+
+const init = async () => {
     const db = new databaseInterface(dbConfig);
+    // consistency check - Check if employees have null roles
+    await checkConsistency(db);
     run(db);
 }
 

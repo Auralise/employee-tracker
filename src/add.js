@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const {validateName} = require('util');
+const {validateName} = require('./util');
 
 const addDept = async db => {
     const question = [{
@@ -110,9 +110,9 @@ const addEmployee = async db => {
 
     const answers = await inquirer.prompt(questions);
 
-    const roleID = roles.find(e => e.title === answers.role).id;
+    const roleID = roles.find(e => e.title === answers.role).role_id;
 
-    let managerID = "NULL";
+    let managerID = null;
 
     if(answers.manager != "None"){
         const names = answers.manager.split(' ');
