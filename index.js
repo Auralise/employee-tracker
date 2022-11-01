@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const databaseInterface = require('./lib/database');
 // eslint-disable-next-line no-unused-vars
 const ct = require('console.table');
+const { up } = require('inquirer/lib/utils/readline');
 
 const dbConfig = {
     host: "localhost",
@@ -258,6 +259,22 @@ const updateEmployeeRole = async db => {
     await db.updateEmployeeRole(empID, newRoleID);
 }
 
+const updateEmployeeManager = async db => {
+    console.log("Choose which employee to update: ");
+    const empID = await chooseEmployee(db);
+
+    console.log("Choose their new manager: ");
+    const mgrID = await chooseEmployee(db);
+
+    if (empID === mgrID) {
+        console.log("An employee cannot be their own manager");
+        updateEmployeeManager(db);
+    }
+    else {
+        db.updateEmployeeManager(empID, mgrID);
+    }
+}
+
 const run = async db => {
     const answer = await inquirer.prompt(mainMenu);
 
@@ -313,7 +330,9 @@ const run = async db => {
             console.log('');
             break;
         case "Update and employee's manager":
-
+            console.log('');
+            await updateEmployeeManager(db);
+            console.log('');
             break;
         case "Delete a department":
 
