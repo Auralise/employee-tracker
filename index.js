@@ -139,7 +139,7 @@ const addDept = async db => {
         }
     }];
 
-    const answer = inquirer.prompt(question);
+    const answer = await inquirer.prompt(question);
 
     console.log('');
 
@@ -147,7 +147,7 @@ const addDept = async db => {
 }
 
 const addRole = async db => {
-    const departments = db.getDepartments();
+    const departments = await db.getDepartments();
 
     const deptChoices = [];
 
@@ -183,9 +183,9 @@ const addRole = async db => {
         }
     ]
 
-    const answers = inquirer.prompt(questions);
+    const answers = await inquirer.prompt(questions);
 
-    const deptID = departments.find(e => e.name = answers.department).id;
+    const deptID = departments.find(e => e.department_name === answers.department).id;
 
     await db.addRole(answers.title, answers.salary, deptID);
 }
@@ -237,7 +237,7 @@ const addEmployee = async db => {
         }
     ];
 
-    const answers = inquirer.prompt(questions);
+    const answers = await inquirer.prompt(questions);
 
     const roleID = roles.find(e => e.title === answers.role).id;
 
