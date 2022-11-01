@@ -6,6 +6,7 @@ const ct = require('console.table');
 const {chooseDepartment, chooseManager} = require('./src/select');
 const {addDept, addRole, addEmployee} = require('./src/add');
 const {updateEmployeeRole, updateEmployeeManager} = require('./src/update');
+const {deleteDepartment, deleteRole, deleteEmployee} = require('./src/delete');
 
 const dbConfig = {
     host: "localhost",
@@ -110,13 +111,19 @@ const run = async db => {
             console.log('');
             break;
         case "Delete a department":
-
+            console.log('');
+            await deleteDepartment();
+            console.log('');
             break;
         case "Delete a role":
-
+            console.log('');
+            await deleteRole();
+            console.log('');
             break;
         case "Delete an employee":
-
+            console.log('');
+            await deleteEmployee();
+            console.log('');
             break;
         case "Quit":
             return;
