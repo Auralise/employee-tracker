@@ -55,7 +55,7 @@ const chooseEmployee = async db => {
         }
     ];
 
-    const answer = await inquirer.promt(question);
+    const answer = await inquirer.prompt(question);
 
     console.log('');
 
