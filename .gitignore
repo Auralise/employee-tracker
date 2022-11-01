@@ -105,3 +105,6 @@ dist
 
 #ESlint config file
 .eslintrc.json
+
+#File used for testing database calls
+test-calls.js
