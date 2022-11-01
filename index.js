@@ -41,8 +41,8 @@ const mainMenu = [
             "Delete a role",
             "Delete an employee",
             new inquirer.Separator(),
+            "Quit",
             new inquirer.Separator(),
-            "Quit"
         ]
     }
 ];

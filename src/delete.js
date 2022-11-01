@@ -24,7 +24,7 @@ const deleteDepartment = async db => {
     if (await confirm()){
         const deptID = departments.find(e => e.department_name === answers.department).id;
         await db.deleteDepartment(deptID);
-        checkConsistency(db);
+        await checkConsistency(db);
     }
     else {
         console.log(`User aborted... ${answers.department} was not deleted`)
@@ -33,7 +33,7 @@ const deleteDepartment = async db => {
 }
 
 const deleteRole = async db => {
-    const roles = db.getRoles();
+    const roles = await db.getRoles();
     const choices = [];
     roles.forEach(e => choices.push(e.title));
 
@@ -51,7 +51,7 @@ const deleteRole = async db => {
     if (await confirm()){
         const roleID = roles.find(e => e.title === answers.role).role_id;
         await db.deleteRole(roleID);
-        checkConsistency(db);
+        await checkConsistency(db);
     }
     else {
         console.log(`User aborted... ${answers.role} has not been deleted`);
