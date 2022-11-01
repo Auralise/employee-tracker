@@ -137,6 +137,7 @@ const addDept = async db => {
                 return "A department can't have a name longer than 30 characters";
             else
                 return true;
+
         }
     }];
 
@@ -275,6 +276,7 @@ const updateEmployeeManager = async db => {
     }
 }
 
+
 const run = async db => {
     const answer = await inquirer.prompt(mainMenu);
 
@@ -310,9 +312,11 @@ const run = async db => {
             console.log('');
             break;
         case "Add a department":
+
             console.log('');
             await addDept(db);
             console.log('');
+
             break;
         case "Add a role":
             console.log('');
