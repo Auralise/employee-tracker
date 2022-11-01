@@ -86,7 +86,10 @@ const addDept = async db => {
     const question = [{
         type: 'input',
         name: 'deptName',
-        message: "What do you want to call the department?" 
+        message: "What do you want to call the department?",
+        validate: input => {
+            return input.length < 1 ? "A department must have more 1 character for a name" : true;
+        }
     }];
 
     const answer = inquirer.prompt(question);
@@ -95,6 +98,7 @@ const addDept = async db => {
 
     db.addDepartment(answer.deptName);
 }
+
 
 const run = async db => {
     const answer = await inquirer.prompt(mainMenu);
@@ -131,8 +135,7 @@ const run = async db => {
             console.log('');
             break;
         case "Add a department":
-            console.log('');
-            
+
             break;
         case "Add a role":
 
