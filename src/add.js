@@ -7,8 +7,8 @@ const addDept = async db => {
         name: 'deptName',
         message: "What do you want to call the department?",
         validate: input => {
-            if (input.length < 1)
-                return "A department must have more 1 character for a name";
+            if (input.length < 2)
+                return "A department must have more than 1 character for a name";
             else if (input.length > 30)
                 return "A department can't have a name longer than 30 characters";
             else
@@ -27,6 +27,12 @@ const addDept = async db => {
 const addRole = async db => {
     const departments = await db.getDepartments();
 
+    if (departments.length === 0){
+        console.log("Please add departments before attempting to add roles");
+        return;
+    }
+
+
     const deptChoices = [];
 
     departments.forEach(e => deptChoices.push(e.department_name));
@@ -38,7 +44,7 @@ const addRole = async db => {
             message: "What do you want to call the role?",
             validate: input => {
                 if (input.length < 3)
-                    return "Role title can't be less than 3 characters long";
+                    return "Role's title can't be less than 3 characters long";
                 else if (input.length > 30)
                     return "Role title can't be longer than 30 characters";
                 else
@@ -73,6 +79,11 @@ const addRole = async db => {
 const addEmployee = async db => {
     const roles = await db.getRoles();
     const employees = await db.getEmployees();
+
+    if (roles.length === 0) {
+        console.log("Please add roles before attempting to add employees");
+        return;
+    }
 
     const roleChoices = [];
     roles.forEach(e => roleChoices.push(e.title));
