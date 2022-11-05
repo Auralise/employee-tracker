@@ -48,6 +48,8 @@ The interface is quite self explanitory and provides all usage option in the mai
 node index.js
 ```
 
+A demonstration video of the application being used can be found here: TODO
+
 ## Tests
 
 This application does not come with included tests.
