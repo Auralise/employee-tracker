@@ -48,7 +48,7 @@ The interface is quite self explanitory and provides all usage option in the mai
 node index.js
 ```
 
-A demonstration video of the application being used can be found here: TODO
+A demonstration video of the application being used [can be found here](https://youtu.be/0f27e4DdBlI)
 
 ## Tests
 
