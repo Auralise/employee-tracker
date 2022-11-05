@@ -34,6 +34,7 @@ CREATE TABLE employee (
     ON DELETE SET NULL,
     FOREIGN KEY (manager_id)
     REFERENCES employee(id)
+    ON DELETE SET NULL
 );
 
 -- Create database user - This will fail the first time the script runs as you can not selectively drop a user if they exist
